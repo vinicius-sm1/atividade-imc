@@ -5,7 +5,9 @@ const Result = ({ imc }) => {
     if (imc < 18.5) return "Abaixo do peso";
     if (imc >= 18.5 && imc <= 24.9) return "Peso normal";
     if (imc >= 25.0 && imc <= 29.9) return "Sobrepeso";
-    if (imc >= 30.0) return "Obesidade";
+    if (imc >= 30.0 && imc <= 34.9) return "Obesidade 1";
+    if (imc >= 35.0 && imc <= 39.9) return "Obesidade 2";
+    if (imc >= 40.0) return "Obesidade 3";
   };
 
   const getCategoriaStyles = (imc) => {
@@ -56,8 +58,16 @@ const Result = ({ imc }) => {
             <span>25.0 - 29.9</span>
           </div>
           <div className="flex justify-between items-center p-2 bg-red-50 text-red-800 rounded">
-            <span className="font-medium">Obesidade</span>
-            <span>&ge; 30.0</span>
+            <span className="font-medium">Obesidade 1</span>
+            <span>&ge; 30.0 - 34.9</span>
+          </div>
+          <div className="flex justify-between items-center p-2 bg-red-50 text-red-800 rounded">
+            <span className="font-medium">Obesidade 2</span>
+            <span>&ge; 35.0 - 39,9</span>
+          </div>
+          <div className="flex justify-between items-center p-2 bg-red-50 text-red-800 rounded">
+            <span className="font-medium">Obesidade 3</span>
+            <span>&ge; 40.0</span>
           </div>
         </div>
       </div>
