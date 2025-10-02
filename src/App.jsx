@@ -1,27 +1,21 @@
-import React, { useState } from "react";
-import Header from "./components/header";
-import InputForm from "./components/InputForm";
-import Result from "./components/result";
+// src/App.js
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import IMC from "./components/imc";
+import Home from "./components/home";
+import NotFound from "./components/NotFound"; // Import your 404 component
 
-const App = () => {
-  const [imc, setImc] = useState(null);
-
-  const fazerCalculo = (imcCalculado) => {
-    setImc(imcCalculado);
-  };
-
+function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 py-8">
-      <div className="max-w-2xl mx-auto px-4">
-        <Header />
-
-        <main>
-          <InputForm onCalculo={fazerCalculo} />
-          <Result imc={imc} />
-        </main>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/IMC" element={<IMC />} />
+        {/* This is the catch-all route for 404 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
