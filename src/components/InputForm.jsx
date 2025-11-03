@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 const InputForm = ({ onCalculo }) => {
   const [peso, setPeso] = useState("");
   const [altura, setAltura] = useState("");
@@ -10,8 +11,15 @@ const InputForm = ({ onCalculo }) => {
 
       if (pesoNum > 0 && alturaNum > 0) {
         const imc = pesoNum / (alturaNum * alturaNum);
-        onCalculo(imc);
+        // Passa o IMC, peso e altura para o componente pai
+        onCalculo(imc, peso, altura);
       }
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      fazerCalculo();
     }
   };
 
@@ -34,6 +42,7 @@ const InputForm = ({ onCalculo }) => {
             id="peso"
             value={peso}
             onChange={(e) => setPeso(e.target.value)}
+            onKeyPress={handleKeyPress}
             placeholder="Ex: 70"
             step="0.1"
             min="0"
@@ -53,6 +62,7 @@ const InputForm = ({ onCalculo }) => {
             id="altura"
             value={altura}
             onChange={(e) => setAltura(e.target.value)}
+            onKeyPress={handleKeyPress}
             placeholder="Ex: 1.75"
             step="0.01"
             min="0"
@@ -70,4 +80,5 @@ const InputForm = ({ onCalculo }) => {
     </section>
   );
 };
+
 export default InputForm;
